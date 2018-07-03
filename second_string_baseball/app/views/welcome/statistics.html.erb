@@ -1,3 +1,59 @@
 <ons-page>
+  </br> 
 
+  <div class="form-control">
+    <h3>Individual Career Stats</h3>
+
+    <select class="form-control" id="player-stats">
+      <%= Player.order(:name).each do |player| %>
+        <option value="<%= player.id %>"><%= player.name %></option>
+      <% end %>
+    </select>
+
+    </br>
+
+    <ons-button onclick="get_player_data()">Get Player Stats</ons-button>
+
+    </br></br>
+  </div>
+
+  </br> </br>
+
+  <div class="form-control">
+    <h3>Individual Game Stats</h3>
+
+    <select class="form-control" id="game-stats">
+      <%= Game.order(:id).each do |game| %>
+        <option value="<%= game.id %>"><%= game.date_of_game.to_s + ": " + game.away_name + " @ " + game.home_name %></option>
+      <% end %>
+    </select>
+
+    </br>
+
+    <ons-button onclick="get_games_data()">Get Game Stats</ons-button>
+
+    </br></br>
+  </div>
+
+  <ons-modal id="player-modal" style="display: none" animation="lift">
+    <div style="text-align: center" id="player-spinner">
+      <p>
+        <ons-icon icon="md-spinner" size="28px" spin></ons-icon>
+      </p>
+    </div>
+
+    <div id="player-modal-content" style="margin: 15px"></div>
+  </ons-modal>
+
+  <ons-modal id="games-modal" style="display: none" animation="lift">
+    <div style="text-align: center" id="games-spinner">
+      <p>
+        <ons-icon icon="md-spinner" size="28px" spin></ons-icon>
+      </p>
+    </div>
+
+    <div id="games-modal-content" style="margin: 15px"></div>
+  </ons-modal>
 </ons-page>
+
+

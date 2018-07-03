@@ -1,0 +1,223 @@
+<ons-page>
+  <form>
+    <div class="form-group" style="margin: 10px;">
+      <label for="season">Season</label>
+      <select class="form-control" id="season">
+        <% Season.order(:id).each do |season| %>
+          <option value="<%= season.id %>"><%= season.name %></option>
+        <% end %>
+      </select>
+    </div>
+
+    <div class="form-group" style="margin: 10px;">
+      <label for="date-of-game">Date of Game</label>
+      <input type="date" class="form-control" id="date-of-game">
+    </div>
+
+    <div class="row" style="margin: 0px;">
+      <div class="col">
+        <div class="form-group">
+          <label for="away-name">Away Name</label>
+          <input type="text" class="form-control" id="away-name">
+        </div>
+
+        <div class="form-group">
+          <label for="home-name">Home Name</label>
+          <input type="text" class="form-control" id="home-name">
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="form-group">
+          <label for="away-hits">Away Hits</label>
+          <input type="number" class="form-control" id="away-hits">
+        </div>
+
+        <div class="form-group">
+          <label for="home-hits">Home Hits</label>
+          <input type="number" class="form-control" id="home-hits">
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="form-group">
+          <label for="away-errors">Away Errors</label>
+          <input type="number" class="form-control" id="away-errors">
+        </div>
+
+        <div class="form-group">
+          <label for="home-errors">Home Errors</label>
+          <input type="number" class="form-control" id="home-errors">
+        </div>
+      </div>
+    </div>
+
+    <div class="row" style="margin: 0px;">
+      <div class="col">
+        <div class="form-group">
+          <label for="top-first">1</label>
+          <input type="number" class="form-control" id="top-first">
+        </div>
+
+        <div class="form-group">
+          <input type="number" class="form-control" id="bottom-first">
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="form-group">
+          <label for="top-second">2</label>
+          <input type="number" class="form-control" id="top-second">
+        </div>
+
+        <div class="form-group">
+          <input type="number" class="form-control" id="bottom-second">
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="form-group">
+          <label for="top-third">3</label>
+          <input type="number" class="form-control" id="top-third">
+        </div>
+
+        <div class="form-group">
+          <input type="number" class="form-control" id="bottom-third">
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="form-group">
+          <label for="top-fourth">4</label>
+          <input type="number" class="form-control" id="top-fourth">
+        </div>
+
+        <div class="form-group">
+          <input type="number" class="form-control" id="bottom-fourth">
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="form-group">
+          <label for="top-fifth">5</label>
+          <input type="number" class="form-control" id="top-fifth">
+        </div>
+
+        <div class="form-group">
+          <input type="number" class="form-control" id="bottom-fifth">
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="form-group">
+          <label for="top-sixth">6</label>
+          <input type="number" class="form-control" id="top-sixth">
+        </div>
+
+        <div class="form-group">
+          <input type="number" class="form-control" id="bottom-sixth">
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="form-group">
+          <label for="top-seventh">7</label>
+          <input type="number" class="form-control" id="top-seventh">
+        </div>
+
+        <div class="form-group">
+          <input type="number" class="form-control" id="bottom-seventh">
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="form-group">
+          <label for="top-eighth">8</label>
+          <input type="number" class="form-control" id="top-eighth">
+        </div>
+
+        <div class="form-group">
+          <input type="number" class="form-control" id="bottom-eighth">
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="form-group">
+          <label for="top-ninth">9</label>
+          <input type="number" class="form-control" id="top-ninth">
+        </div>
+
+        <div class="form-group">
+          <input type="number" class="form-control" id="bottom-ninth">
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="form-group">
+          <label for="top-tenth">10</label>
+          <input type="number" class="form-control" id="top-tenth">
+        </div>
+
+        <div class="form-group">
+          <input type="number" class="form-control" id="bottom-tenth">
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group" style="margin: 10px">
+      <div class="checkbox">
+        <label><input type="checkbox" id="outcome-win"> Win</label>
+      </div>
+ 
+      <div class="checkbox">
+        <label><input type="checkbox" id="outcome-loss"> Loss</label>
+      </div>
+
+      <div class="checkbox">
+        <label><input type="checkbox" id="outcome-tie"> Tie</label>
+      </div>
+    </div>
+
+    <div class="form-group" style="margin: 10px">
+      <label for="winning-pitcher">Winning Pitcher</label>
+      <select class="form-control" id="winning-pitcher">
+          <option>None</option>
+        <% Player.order(:name).each do |player| %>
+          <option value="<%= player.id %>"><%= player.name %></option>
+        <% end %>
+      </select> 
+    </div>
+
+    <div class="form-group" style="margin: 10px">
+      <label for="losing-pitcher">Losing Pitcher</label>
+      <select class="form-control" id="losing-pitcher">
+        <option>None</option>
+        <% Player.order(:name).each do |player| %>
+          <option value="<%= player.id %>"><%= player.name %></option>
+        <% end %>
+      </select> 
+    </div>
+ 
+    <div class="form-group" style="margin: 10px">
+      <label for="saving-pitcher">Saving Pitcher</label>
+      <select class="form-control" id="saving-pitcher">
+        <option>None</option>
+        <% Player.order(:name).each do |player| %>
+          <option value="<%= player.id %>"><%= player.name %></option>
+        <% end %>
+      </select> 
+    </div>
+ 
+    <div style="margin: 10px">
+      <ons-button modifier="large" onclick="create_game()">Create Game</ons-button>
+    </div>
+
+    <div class="alert alert-success" style="margin: 10px; display: none" id="game_success">
+      <strong>Success!</strong> Game created.
+    </div>
+
+    <div class="alert alert-danger" style="margin: 10px; display: none" id="game_failed">
+      <strong>Failed!</strong> Game was not created.
+    </div>
+  </form>
+</ons-page>

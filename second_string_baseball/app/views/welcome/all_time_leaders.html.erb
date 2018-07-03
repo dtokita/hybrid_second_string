@@ -1,0 +1,491 @@
+<ons-page>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm">
+        <h2>Batting Avg</h2>
+        <table class="table table-sm table-striped">
+          <thead>
+            <th>#</th>
+            <th>Player</th>
+            <th></th>
+          </thead>
+
+          <tbody>
+            <% for i in 0..4 %>
+              <tr>
+                <th><%= i+1 %></th>
+                <td><%= Player.find(@batting_avgs[i][1]).name %></td>
+                <td><%= '%.3f' % @batting_avgs[i][0] %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="col-sm">
+        <h2>OBP</h2>
+        <table class="table table-sm table-striped">
+          <thead>
+            <th>#</th>
+            <th>Player</th>
+            <th></th>
+          </thead>
+
+          <tbody>
+            <% for i in 0..4 %>
+              <tr>
+                <th><%= i+1 %></th>
+                <td><%= Player.find(@obps[i][1]).name %></td>
+                <td><%= '%.3f' % @obps[i][0] %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm">
+        <h2>Slugging Pct</h2>
+        <table class="table table-sm table-striped">
+          <thead>
+            <th>#</th>
+            <th>Player</th>
+            <th></th>
+          </thead>
+
+          <tbody>
+            <% for i in 0..4 %>
+              <tr>
+                <th><%= i+1 %></th>
+                <td><%= Player.find(@slugging_pcts[i][1]).name %></td>
+                <td><%= '%.3f' % @slugging_pcts[i][0] %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="col-sm">
+        <h2>OPS</h2>
+        <table class="table table-sm table-striped">
+          <thead>
+            <th>#</th>
+            <th>Player</th>
+            <th></th>
+          </thead>
+
+          <tbody>
+            <% for i in 0..4 %>
+              <tr>
+                <th><%= i+1 %></th>
+                <td><%= Player.find(@opss[i][1]).name %></td>
+                <td><%= '%.3f' % @opss[i][0] %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm">
+        <h2>Hits</h2>
+        <table class="table table-sm table-striped">
+          <thead>
+            <th>#</th>
+            <th>Player</th>
+            <th></th>
+          </thead>
+
+          <tbody>
+            <% for i in 0..4 %>
+              <tr>
+                <th><%= i+1 %></th>
+                <td><%= Player.find(@hits[i][1]).name %></td>
+                <td><%= '%.0f' % @hits[i][0] %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="col-sm">
+        <h2>Runs</h2>
+        <table class="table table-sm table-striped">
+          <thead>
+            <th>#</th>
+            <th>Player</th>
+            <th></th>
+          </thead>
+
+          <tbody>
+            <% for i in 0..4 %>
+              <tr>
+                <th><%= i+1 %></th>
+                <td><%= Player.find(@runs[i][1]).name %></td>
+                <td><%= '%.0f' % @runs[i][0] %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm">
+        <h2>RBIs</h2>
+        <table class="table table-sm table-striped">
+          <thead>
+            <th>#</th>
+            <th>Player</th>
+            <th></th>
+          </thead>
+
+          <tbody>
+            <% for i in 0..4 %>
+              <tr>
+                <th><%= i+1 %></th>
+                <td><%= Player.find(@rbis[i][1]).name %></td>
+                <td><%= '%.0f' % @rbis[i][0] %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="col-sm">
+        <h2>Walks</h2>
+        <table class="table table-sm table-striped">
+          <thead>
+            <th>#</th>
+            <th>Player</th>
+            <th></th>
+          </thead>
+
+          <tbody>
+            <% for i in 0..4 %>
+              <tr>
+                <th><%= i+1 %></th>
+                <td><%= Player.find(@walks[i][1]).name %></td>
+                <td><%= '%.0f' % @walks[i][0] %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm">
+        <h2>Singles</h2>
+        <table class="table table-sm table-striped">
+          <thead>
+            <th>#</th>
+            <th>Player</th>
+            <th></th>
+          </thead>
+
+          <tbody>
+            <% for i in 0..4 %>
+              <tr>
+                <th><%= i+1 %></th>
+                <td><%= Player.find(@singles[i][1]).name %></td>
+                <td><%= '%.0f' % @singles[i][0] %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="col-sm">
+        <h2>Doubles</h2>
+        <table class="table table-sm table-striped">
+          <thead>
+            <th>#</th>
+            <th>Player</th>
+            <th></th>
+          </thead>
+
+          <tbody>
+            <% for i in 0..4 %>
+              <tr>
+                <th><%= i+1 %></th>
+                <td><%= Player.find(@doubles[i][1]).name %></td>
+                <td><%= '%.0f' % @doubles[i][0] %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-sm">
+        <h2>Triples</h2>
+        <table class="table table-sm table-striped">
+          <thead>
+            <th>#</th>
+            <th>Player</th>
+            <th></th>
+          </thead>
+
+          <tbody>
+            <% for i in 0..4 %>
+              <tr>
+                <th><%= i+1 %></th>
+                <td><%= Player.find(@triples[i][1]).name %></td>
+                <td><%= '%.0f' % @triples[i][0] %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="col-sm">
+        <h2>Homeruns</h2>
+        <table class="table table-sm table-striped">
+          <thead>
+            <th>#</th>
+            <th>Player</th>
+            <th></th>
+          </thead>
+
+          <tbody>
+            <% for i in 0..4 %>
+              <tr>
+                <th><%= i+1 %></th>
+                <td><%= Player.find(@homeruns[i][1]).name %></td>
+                <td><%= '%.0f' % @homeruns[i][0] %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm">
+        <h2>Steals</h2>
+        <table class="table table-sm table-striped">
+          <thead>
+            <th>#</th>
+            <th>Player</th>
+            <th></th>
+          </thead>
+
+          <tbody>
+            <% for i in 0..4 %>
+              <tr>
+                <th><%= i+1 %></th>
+                <td><%= Player.find(@steals[i][1]).name %></td>
+                <td><%= '%.0f' % @steals[i][0] %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="col-sm">
+        <h2>Strikeouts</h2>
+        <table class="table table-sm table-striped">
+          <thead>
+            <th>#</th>
+            <th>Player</th>
+            <th></th>
+          </thead>
+
+          <tbody>
+            <% for i in 0..4 %>
+              <tr>
+                <th><%= i+1 %></th>
+                <td><%= Player.find(@strikeouts[i][1]).name %></td>
+                <td><%= '%.0f' % @strikeouts[i][0] %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm">
+        <h2>Games Played</h2>
+        <table class="table table-sm table-striped">
+          <thead>
+            <th>#</th>
+            <th>Player</th>
+            <th></th>
+          </thead>
+
+          <tbody>
+            <% for i in 0..4 %>
+              <tr>
+                <th><%= i+1 %></th>
+                <td><%= Player.find(@games_played[i][1]).name %></td>
+                <td><%= '%.0f' % @games_played[i][0] %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="col-sm">
+        <h2>Innings Pitched</h2>
+        <table class="table table-sm table-striped">
+          <thead>
+            <th>#</th>
+            <th>Player</th>
+            <th></th>
+          </thead>
+
+          <tbody>
+            <% for i in 0..4 %>
+              <tr>
+                <th><%= i+1 %></th>
+                <td><%= Player.find(@outs_recorded[i][1]).name %></td>
+                <td><%= '%.0f' % (@outs_recorded[i][0] / 3.0) + "." + (@outs_recorded[i][0] % 3).to_i.to_s %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm">
+        <h2>Pitching Strikeouts</h2>
+        <table class="table table-sm table-striped">
+          <thead>
+            <th>#</th>
+            <th>Player</th>
+            <th></th>
+          </thead>
+
+          <tbody>
+            <% for i in 0..4 %>
+              <tr>
+                <th><%= i+1 %></th>
+                <td><%= Player.find(@p_strikeouts[i][1]).name %></td>
+                <td><%= '%.0f' % @p_strikeouts[i][0] %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="col-sm">
+        <h2>ERA</h2>
+        <table class="table table-sm table-striped">
+          <thead>
+            <th>#</th>
+            <th>Player</th>
+            <th></th>
+          </thead>
+
+          <tbody>
+            <% for i in 0..4 %>
+              <tr>
+                <th><%= i+1 %></th>
+                <td><%= Player.find(@era[i][1]).name %></td>
+                <td><%= '%.2f' % @era[i][0] %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm">
+        <h2>WHIP</h2>
+        <table class="table table-sm table-striped">
+          <thead>
+            <th>#</th>
+            <th>Player</th>
+            <th></th>
+          </thead>
+
+          <tbody>
+            <% for i in 0..4 %>
+              <tr>
+                <th><%= i+1 %></th>
+                <td><%= Player.find(@whip[i][1]).name %></td>
+                <td><%= '%.2f' % @whip[i][0] %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="col-sm">
+        <h2>Wins</h2>
+        <table class="table table-sm table-striped">
+          <thead>
+            <th>#</th>
+            <th>Player</th>
+            <th></th>
+          </thead>
+
+          <tbody>
+            <% for i in 0..4 %>
+              <tr>
+                <th><%= i+1 %></th>
+                <td><%= Player.find(@wins[i][1]).name %></td>
+                <td><%= '%.0f' % @wins[i][0] %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm">
+        <h2>Loss</h2>
+        <table class="table table-sm table-striped">
+          <thead>
+            <th>#</th>
+            <th>Player</th>
+            <th></th>
+          </thead>
+
+          <tbody>
+            <% for i in 0..4 %>
+              <tr>
+                <th><%= i+1 %></th>
+                <td><%= Player.find(@loss[i][1]).name %></td>
+                <td><%= '%.0f' % @loss[i][0] %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="col-sm">
+        <h2>Saves</h2>
+        <table class="table table-sm table-striped">
+          <thead>
+            <th>#</th>
+            <th>Player</th>
+            <th></th>
+          </thead>
+
+          <tbody>
+            <% for i in 0..4 %>
+              <tr>
+                <th><%= i+1 %></th>
+                <td><%= Player.find(@saves[i][1]).name %></td>
+                <td><%= '%.0f' % @saves[i][0] %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+
+
+  </div>
+</ons-page>

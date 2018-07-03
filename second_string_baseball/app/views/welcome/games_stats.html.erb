@@ -1,0 +1,169 @@
+<ons-page>
+
+<div style="margin: 10px">
+  <ons-button modifier="quiet" onclick="close_games_modal()">Back</ons-button>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
+      <h2><%= Game.find(params[:game_id]).away_name %></h2>
+    </div>
+
+    <div class="col-sm">
+      <h2><%= Game.find(params[:game_id]).home_name %></h2>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm">
+      <h1><%= Game.find(params[:game_id]).away_runs %></h1>
+    </div>
+
+    <div class="col-sm">
+      <h1><%= Game.find(params[:game_id]).home_runs %></h1>
+    </div>
+  </div>
+</div>
+
+</br>
+
+<div class="container">
+  <h5>Score by Inning</h5>
+
+  <table class="table table-sm table-striped">
+    <thead>
+      <th scope="col">Team</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+      <th>6</th>
+      <th>7</th>
+      <th>8</th>
+      <th>9</th>
+      <th>10</th>
+    </thead>
+
+    <tbody>
+      <tr>
+        <th><%= Game.find(params[:game_id]).away_name %></th>
+        <td><%= Game.find(params[:game_id]).top_first %></td>
+        <td><%= Game.find(params[:game_id]).top_second %></td>
+        <td><%= Game.find(params[:game_id]).top_third %></td>
+        <td><%= Game.find(params[:game_id]).top_fourth %></td>
+        <td><%= Game.find(params[:game_id]).top_fifth %></td>
+        <td><%= Game.find(params[:game_id]).top_sixth %></td>
+        <td><%= Game.find(params[:game_id]).top_seventh %></td>
+        <td><%= Game.find(params[:game_id]).top_eighth %></td>
+        <td><%= Game.find(params[:game_id]).top_ninth %></td>
+        <td><%= Game.find(params[:game_id]).top_tenth %></td>
+      </tr>
+
+      <tr>
+        <th><%= Game.find(params[:game_id]).home_name %></th>
+        <td><%= Game.find(params[:game_id]).bottom_first %></td>
+        <td><%= Game.find(params[:game_id]).bottom_second %></td>
+        <td><%= Game.find(params[:game_id]).bottom_third %></td>
+        <td><%= Game.find(params[:game_id]).bottom_fourth %></td>
+        <td><%= Game.find(params[:game_id]).bottom_fifth %></td>
+        <td><%= Game.find(params[:game_id]).bottom_sixth %></td>
+        <td><%= Game.find(params[:game_id]).bottom_seventh %></td>
+        <td><%= Game.find(params[:game_id]).bottom_eighth %></td>
+        <td><%= Game.find(params[:game_id]).bottom_ninth %></td>
+        <td><%= Game.find(params[:game_id]).bottom_tenth %></td>
+      </tr>
+
+    </tbody>
+  </table>
+</div>
+
+<div>
+  <h5>Offensive Box Score</h5>
+  <table class="table table-sm table-striped">
+    <thead>
+      <tr>
+        <th>Player</th>
+        <th>AB</th>
+        <th>R</th>
+        <th>H</th>
+        <th>RBI</th>
+        <th>BB</th>
+        <th>SO</th>
+        <th>PA</th>
+        <th>1B</th>
+        <th>2B</th>
+        <th>3B</th>
+        <th>HR</th>
+        <th>SB</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% Offstat.where(game_id: params[:game_id]).each do |offstat| %>
+        <tr>
+          <th><%= Player.find(offstat.player_id).name %></th>
+          <td><%= '%.0f' % offstat.at_bats %></td>
+          <td><%= '%.0f' % offstat.runs %></td>
+          <td><%= '%.0f' % offstat.hits %></td>
+          <td><%= '%.0f' % offstat.rbis %></td>
+          <td><%= '%.0f' % offstat.walks %></td>
+          <td><%= '%.0f' % offstat.strikeouts %></td>
+          <td><%= '%.0f' % offstat.plate_appearances %></td>
+          <td><%= '%.0f' % offstat.singles %></td>
+          <td><%= '%.0f' % offstat.doubles %></td>
+          <td><%= '%.0f' % offstat.triples %></td>
+          <td><%= '%.0f' % offstat.homeruns %></td>
+          <td><%= '%.0f' % offstat.stolen_bases %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<div>
+  <h5>Pitching Box Score</h5>
+  <table class="table table-sm table-striped">
+    <thead>
+      <th>Player</th>
+      <th>IP</th>
+      <th>H</th>
+      <th>R</th>
+      <th>ER</th>
+      <th>BB</th>
+      <th>SO</th>
+      <th>HR</th>
+      <th>W</th>
+      <th>L</th>
+      <th>SV</th>
+    </thead>
+
+    <tbody>
+      <% Pitstat.where(game_id: params[:game_id]).each do |pitstat| %>
+        <tr>
+          <th><%= Player.find(pitstat.player_id).name %></th>
+          <td><%= ('%.0f' % (pitstat.outs_recorded / 3.0)) + "." + ((pitstat.outs_recorded % 3).to_i.to_s) %></td>
+          <td><%= '%0.f' % pitstat.hits %></td>
+          <td><%= '%0.f' % pitstat.runs %></td>
+          <td><%= '%0.f' % pitstat.earned_runs %></td>
+          <td><%= '%0.f' % pitstat.walks %></td>
+          <td><%= '%0.f' % pitstat.strikeouts %></td>
+          <td><%= '%0.f' % pitstat.homeruns %></td>
+          <td><%= '%0.f' % pitstat.win_game %></td>
+          <td><%= '%0.f' % pitstat.loss_game %></td>
+          <td><%= '%0.f' % pitstat.save_game %></td> 
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+
+<div style="margin: 10px">
+  <ons-button modifier="quiet" onclick="close_games_modal()">Back</ons-button>
+</div>
+
+
+
+</ons-page>

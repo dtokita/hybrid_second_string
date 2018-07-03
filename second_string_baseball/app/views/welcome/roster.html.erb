@@ -1,2 +1,20 @@
 <ons-page>
+  <table class="table table-borderless">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">B/T</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% Player.order(:jersey_number).each do |player| %>
+        <tr>
+          <th scope="row"><%= player.jersey_number %></th>
+          <td><%= player.name %></td>
+          <td><%= player.bats + '/' + player.throws %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </ons-page>

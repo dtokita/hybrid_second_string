@@ -1,3 +1,62 @@
 <ons-page>
-  Home
-<ons-page>
+  <div class="container">
+    <h1>Current Record: (<%= Game.sum(:win).to_s + " - " + Game.sum(:loss).to_s + " - " + Game.sum(:tie).to_s %>)</h1>
+  </div>
+
+  <div class="container">
+    <h3>Last Game</h3>
+
+    <table class="table table-sm table-striped">
+      <thead>
+        <th scope="col">Team</th>
+        <th>1</th>
+        <th>2</th>
+        <th>3</th>
+        <th>4</th>
+        <th>5</th>
+        <th>6</th>
+        <th>7</th>
+        <th>8</th>
+        <th>9</th>
+        <th>R</th>
+        <th>H</th>
+        <th>E</th>
+      </thead>
+
+      <tbody>
+        <tr>
+          <th><%= Game.last.away_name %></th>
+          <td><%= Game.last.top_first %></td>
+          <td><%= Game.last.top_second %></td>
+          <td><%= Game.last.top_third %></td>
+          <td><%= Game.last.top_fourth %></td>
+          <td><%= Game.last.top_fifth %></td>
+          <td><%= Game.last.top_sixth %></td>
+          <td><%= Game.last.top_seventh %></td>
+          <td><%= Game.last.top_eighth %></td>
+          <td><%= Game.last.top_ninth %></td>
+          <th><%= Game.last.away_runs %></th>
+          <th><%= Game.last.away_hits %></th>
+          <th><%= Game.last.away_errors %></th>
+        </tr>
+
+        <tr>
+          <th><%= Game.last.home_name %></th>
+          <td><%= Game.last.bottom_first %></td>
+          <td><%= Game.last.bottom_second %></td>
+          <td><%= Game.last.bottom_third %></td>
+          <td><%= Game.last.bottom_fourth %></td>
+          <td><%= Game.last.bottom_fifth %></td>
+          <td><%= Game.last.bottom_sixth %></td>
+          <td><%= Game.last.bottom_seventh %></td>
+          <td><%= Game.last.bottom_eighth %></td>
+          <td><%= Game.last.bottom_ninth %></td>
+          <th><%= Game.last.home_runs %></th>
+          <th><%= Game.last.home_hits %></th>
+          <th><%= Game.last.home_errors %></th>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</ons-page>

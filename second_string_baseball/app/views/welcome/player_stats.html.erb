@@ -1,0 +1,162 @@
+<ons-page>
+
+<div style="margin: 10px">
+  <ons-button modifier="quiet" onclick="close_player_modal()">Back</ons-button>
+</div>
+
+<div>
+  <h3>Offensive Statistics for <%= Player.find(params[:player_id]).name %></h3>
+  <% if (Offstat.where(player_id: params[:player_id]).first != nil) %>
+  <table class="table table-sm table-striped">
+    <thead>
+      <tr>
+      <th scope="col">Game</th>
+      <th scope="col">AB</th>
+      <th scope="col">R</th>
+      <th scope="col">H</th>
+      <th scope="col">RBI</th>
+      <th scope="col">BB</th>
+      <th scope="col">SO</th>
+      <th scope="col">BA</th>
+      <th scope="col">OBP</th>
+      <th scope="col">SLG</th>
+      <th scope="col">OPS</th>
+      <th scope="col">1B</th>
+      <th scope="col">2B</th>
+      <th scope="col">3B</th>
+      <th scope="col">HR</th>
+      <th scope="col">SB</th> 
+      </tr>
+    </thead>
+
+    <tbody>
+      <% Offstat.where(player_id: params[:player_id]).each do |offstat| %>
+        <tr>
+          <td><%= Game.find(offstat.game_id).date_of_game %></td>
+          <td><%= '%.0f' % offstat.at_bats %></td>
+          <td><%= '%.0f' % offstat.runs %></td>
+          <td><%= '%.0f' % offstat.hits %></td>
+          <td><%= '%.0f' % offstat.rbis %></td>
+          <td><%= '%.0f' % offstat.walks %></td>
+          <td><%= '%.0f' % offstat.strikeouts %></td>
+          <td><%= '%.3f' % offstat.batting_average %></td>
+          <td><%= '%.3f' % offstat.on_base_percentage %></td>
+          <td><%= '%.3f' % offstat.slugging_percentage %></td>
+          <td><%= '%.3f' % (offstat.on_base_percentage + offstat.slugging_percentage) %></td>
+          <td><%= '%.0f' % offstat.singles %></td>
+          <td><%= '%.0f' % offstat.doubles %></td>
+          <td><%= '%.0f' % offstat.triples %></td>
+          <td><%= '%.0f' % offstat.homeruns %></td>
+          <td><%= '%.0f' % offstat.stolen_bases %></td>
+        </tr>
+      <% end %>
+
+        <tr>
+          <th>Total</th>
+          <th><%= '%.0f' % Offstat.where(player_id: params[:player_id]).sum(:at_bats) %>
+          <th><%= '%.0f' % Offstat.where(player_id: params[:player_id]).sum(:runs) %>
+          <th><%= '%.0f' % Offstat.where(player_id: params[:player_id]).sum(:hits) %>
+          <th><%= '%.0f' % Offstat.where(player_id: params[:player_id]).sum(:rbis) %>
+          <th><%= '%.0f' % Offstat.where(player_id: params[:player_id]).sum(:walks) %>
+          <th><%= '%.0f' % Offstat.where(player_id: params[:player_id]).sum(:strikeouts) %>
+          <th><%= '%.3f' % (Offstat.where(player_id: params[:player_id]).sum(:hits) / Offstat.where(player_id: params[:player_id]).sum(:at_bats)) %>
+          <th><%= '%.3f' % ((Offstat.where(player_id: params[:player_id]).sum(:walks) + Offstat.where(player_id: params[:player_id]).sum(:hits))/ Offstat.where(player_id: params[:player_id]).sum(:plate_appearances)) %></td>
+          <th><%= '%.3f' % ((Offstat.where(player_id: params[:player_id]).sum(:singles) + Offstat.where(player_id: params[:player_id]).sum(:doubles) * 2 + Offstat.where(player_id: params[:player_id]).sum(:triples) * 3 + Offstat.where(player_id: params[:player_id]).sum(:homeruns) * 4) / Offstat.where(player_id: params[:player_id]).sum(:at_bats)) %></td>
+          <th><%= '%.3f' % (( ((Offstat.where(player_id: params[:player_id]).sum(:walks) + Offstat.where(player_id: params[:player_id]).sum(:hits))/ Offstat.where(player_id: params[:player_id]).sum(:plate_appearances)))  + (((Offstat.where(player_id: params[:player_id]).sum(:singles) + Offstat.where(player_id: params[:player_id]).sum(:doubles) * 2 + Offstat.where(player_id: params[:player_id]).sum(:triples) * 3 + Offstat.where(player_id: params[:player_id]).sum(:homeruns) * 4) / Offstat.where(player_id: params[:player_id]).sum(:at_bats)))) %></th>
+          <th><%= '%.0f' % Offstat.where(player_id: params[:player_id]).sum(:singles) %></th>
+          <th><%= '%.0f' % Offstat.where(player_id: params[:player_id]).sum(:doubles) %></th>
+          <th><%= '%.0f' % Offstat.where(player_id: params[:player_id]).sum(:triples) %></th>
+          <th><%= '%.0f' % Offstat.where(player_id: params[:player_id]).sum(:homeruns) %></th>
+          <th><%= '%.0f' % Offstat.where(player_id: params[:player_id]).sum(:stolen_bases) %></th>
+        </tr>
+    </tbody>
+  </table>
+  <% else %>
+  <h5>No Offensive Statistics Recorded.</h5>
+  <% end %>
+</div>
+
+<div>
+  <h3>Pitching Statistics for <%= Player.find(params[:player_id]).name %></h3>
+  <% if (Pitstat.where(player_id: params[:player_id]).first != nil) %>
+  <table class="table table-sm table-striped">
+    <thead>
+      <tr>
+      <th scope="col">Game</th>
+      <th scope="col">IP</th>
+      <th scope="col">H</th>
+      <th scope="col">R</th>
+      <th scope="col">ER</th>
+      <th scope="col">BB</th>
+      <th scope="col">SO</th>
+      <th scope="col">HR</th>
+      <th scope="col">ERA</th>
+      <th scope="col">WHIP</th>
+      <th scope="col">H/9</th>
+      <th scope="col">BB/9</th>
+      <th scope="col">K/9</th>
+      <th scope="col">W</th>
+      <th scope="col">L</th>
+      <th scope="col">SV</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% Pitstat.where(player_id: params[:player_id]).each do |pitstat| %>
+        <tr>
+          <td><%= Game.find(pitstat.game_id).date_of_game %></td>
+          <td><%= ('%.0f' % (pitstat.outs_recorded / 3.0)) + "." + ( (pitstat.outs_recorded % 3).to_i.to_s ) %></td>
+          <td><%= '%.0f' % pitstat.hits %></td>
+          <td><%= '%.0f' % pitstat.runs %></td>
+          <td><%= '%.0f' % pitstat.earned_runs %></td>
+          <td><%= '%.0f' % pitstat.walks %></td>
+          <td><%= '%.0f' % pitstat.strikeouts %></td>
+          <td><%= '%.0f' % pitstat.homeruns %></td>
+          <td><%= '%.2f' % pitstat.earned_run_average %></td>
+          <td><%= '%.2f' % pitstat.whip %></td>
+          <td><%= '%.2f' % pitstat.hits_per_nine %></td>
+          <td><%= '%.2f' % pitstat.walks_per_nine %></td>
+          <td><%= '%.2f' % pitstat.strikeouts_per_nine %></td>
+          <td><%= '%.0f' % pitstat.win_game %></td>
+          <td><%= '%.0f' % pitstat.loss_game %></td>
+          <td><%= '%.0f' % pitstat.save_game %></td>
+       </tr>
+      <% end %>
+
+        <tr>
+          <th>Total</th>
+          <th><%= ('%.0f' % (Pitstat.where(player_id: params[:player_id]).sum(:outs_recorded) / 3.0)) + "." + ((Pitstat.where(player_id: params[:player_id]).sum(:outs_recorded) % 3).to_i.to_s) %></th>
+          <th><%= '%.0f' % Pitstat.where(player_id: params[:player_id]).sum(:hits) %></th>
+          <th><%= '%.0f' % Pitstat.where(player_id: params[:player_id]).sum(:runs) %></th>
+          <th><%= '%.0f' % Pitstat.where(player_id: params[:player_id]).sum(:earned_runs) %></th>
+          <th><%= '%.0f' % Pitstat.where(player_id: params[:player_id]).sum(:walks) %></th>
+          <th><%= '%.0f' % Pitstat.where(player_id: params[:player_id]).sum(:strikeouts) %></th>
+          <th><%= '%.0f' % Pitstat.where(player_id: params[:player_id]).sum(:homeruns) %></th>
+          <th><%= '%.2f' % ((Pitstat.where(player_id: params[:player_id]).sum(:earned_runs) * 27.0) / Pitstat.where(player_id: params[:player_id]).sum(:outs_recorded)) %></th>
+          <th><%= '%.2f' % ((Pitstat.where(player_id: params[:player_id]).sum(:walks) + Pitstat.where(player_id: params[:player_id]).sum(:hits)) / (Pitstat.where(player_id: params[:player_id]).sum(:outs_recorded) / 27.0)  ) %></th>
+          <th><%= '%.2f' % (Pitstat.where(player_id: params[:player_id]).sum(:hits) / (Pitstat.where(player_id: params[:player_id]).sum(:outs_recorded) / 27.0)  ) %></th>
+          <th><%= '%.2f' % (Pitstat.where(player_id: params[:player_id]).sum(:walks) / (Pitstat.where(player_id: params[:player_id]).sum(:outs_recorded) / 27.0)  ) %></th>
+          <th><%= '%.2f' % (Pitstat.where(player_id: params[:player_id]).sum(:strikeouts) / (Pitstat.where(player_id: params[:player_id]).sum(:outs_recorded) / 27.0)  ) %></th>
+
+
+
+          <th><%= '%.0f' % Pitstat.where(player_id: params[:player_id]).sum(:win_game) %>
+          <th><%= '%.0f' % Pitstat.where(player_id: params[:player_id]).sum(:loss_game) %>
+          <th><%= '%.0f' % Pitstat.where(player_id: params[:player_id]).sum(:save_game) %>
+ 
+
+       </tr>
+    </tbody>
+  </table>
+  <% else %>
+  <h5>No Pitching Statistics Recorded.</h5>
+  <% end %>
+</div>
+
+<div style="margin: 10px">
+  <ons-button modifier="quiet" onclick="close_player_modal()">Back</ons-button>
+</div>
+
+
+
+</ons-page>

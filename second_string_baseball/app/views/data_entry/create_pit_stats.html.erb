@@ -1,0 +1,92 @@
+<ons-page>
+  <form>
+    <div class="form-group" style="margin: 10px;">
+      <label for="pit-player">Player</label>
+      <select class="form-control" id="pit-player">
+        <% Player.order(:name).each do |player| %>
+          <option value="<%= player.id %>"><%= player.name %></option>
+        <% end %>
+      </select>
+    </div>
+
+    <div class="form-group" style="margin: 10px;">
+      <label for="pit-season">Season</label>
+      <select class="form-control" id="pit-season">
+        <% Season.order(:id).each do |season| %>
+          <option value="<%= season.id %>"><%= season.name %></option>
+        <% end %>
+      </select>
+    </div>
+
+    <div class="form-group" style="margin: 10px;">
+      <label for="pit-game">Game</label>
+      <select class="form-control" id="pit-game">
+        <% Game.order(:id).each do |game| %>
+          <option value="<%= game.id %>"><%= game.away_name + " @ " + game.home_name %></option>
+        <% end %>
+      </select>
+    </div>
+
+    <div class="form-group" style="margin: 10px;">
+      <label for="outs-recorded">Outs Recorded</label>
+      <input type="number" class="form-control" id="outs-recorded">
+    </div>
+
+    <div class="form-group" style="margin: 10px;">
+      <label for="hits-allowed">Hits Allowed</label>
+      <input type="number" class="form-control" id="hits-allowed">
+    </div>
+
+    <div class="form-group" style="margin: 10px;">
+      <label for="runs-allowed">Runs Allowed</label>
+      <input type="number" class="form-control" id="runs-allowed">
+    </div>
+
+    <div class="form-group" style="margin: 10px;">
+      <label for="earned-runs">Earned Runs</label>
+      <input type="number" class="form-control" id="earned-runs">
+    </div>
+
+    <div class="form-group" style="margin: 10px;">
+      <label for="walks-allowed">Walks Allowed</label>
+      <input type="number" class="form-control" id="walks-allowed">
+    </div>
+
+    <div class="form-group" style="margin: 10px;">
+      <label for="strikeouts-recorded">Strikeouts</label>
+      <input type="number" class="form-control" id="strikeouts-recorded">
+    </div>
+
+    <div class="form-group" style="margin: 10px;">
+      <label for="homeruns-allowed">Homeruns Allowed</label>
+      <input type="number" class="form-control" id="homeruns-allowed">
+    </div>
+
+    <div class="form-group" style="margin: 10px;">
+      <label for="win-game">Win</label>
+      <input type="checkbox" class="form-control" id="win-game">
+    </div>
+
+    <div class="form-group" style="margin: 10px;">
+      <label for="loss-game">Loss</label>
+      <input type="checkbox" class="form-control" id="loss-game">
+    </div>
+
+    <div class="form-group" style="margin: 10px;">
+      <label for="save-game">Save</label>
+      <input type="checkbox" class="form-control" id="save-game">
+    </div>
+
+    <div style="margin: 10px">
+      <ons-button modifier="large" onclick="create_pit_stat()">Create Pit Statline</ons-button>
+    </div>
+
+    <div class="alert alert-success" style="margin: 10px; display: none" id="pit_stat_success">
+      <strong>Success!</strong> Pit Stat created.
+    </div>
+
+    <div class="alert alert-danger" style="margin: 10px; display: none" id="pit_stat_failed">
+      <strong>Failed!</strong> Pit Stat was not created.
+    </div>
+  </form>
+</ons-page>
