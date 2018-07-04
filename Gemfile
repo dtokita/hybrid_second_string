@@ -26,6 +26,8 @@ gem 'bootstrap', '~> 4.1.1'
 
 # Heroku needed
 gem 'rails_12factor', group: :production
+gem 'mysql'
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
