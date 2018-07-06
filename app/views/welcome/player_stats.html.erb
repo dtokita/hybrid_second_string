@@ -39,10 +39,22 @@
           <td><%= '%.0f' % offstat.rbis %></td>
           <td><%= '%.0f' % offstat.walks %></td>
           <td><%= '%.0f' % offstat.strikeouts %></td>
-          <td><%= '%.3f' % offstat.batting_average %></td>
+          <% if offstat.batting_average != nil %>
+            <td><%= '%.3f' % offstat.batting_average %></td>
+          <% else %>
+            <td>0.000</td>
+          <% end %>
           <td><%= '%.3f' % offstat.on_base_percentage %></td>
-          <td><%= '%.3f' % offstat.slugging_percentage %></td>
-          <td><%= '%.3f' % (offstat.on_base_percentage + offstat.slugging_percentage) %></td>
+          <% if offstat.slugging_percentage != nil %>
+            <td><%= '%.3f' % offstat.slugging_percentage %></td>
+          <% else %>
+            <td>0.000</td>
+          <% end %>
+          <% if offstat.slugging_percentage != nil %>
+            <td><%= '%.3f' % (offstat.on_base_percentage + offstat.slugging_percentage) %></td>
+          <% else %>
+            <td><%= '%.3f' % (offstat.on_base_percentage) %></td>         
+          <% end %>
           <td><%= '%.0f' % offstat.singles %></td>
           <td><%= '%.0f' % offstat.doubles %></td>
           <td><%= '%.0f' % offstat.triples %></td>
